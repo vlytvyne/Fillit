@@ -14,8 +14,7 @@ NAME = fillit
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
 SRCS = main.c \
-validation.c \
-usage.c
+validator.c
 
 OBJS = $(SRCS:.c=.o)
 

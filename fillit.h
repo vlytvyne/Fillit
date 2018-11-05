@@ -37,6 +37,6 @@ typedef struct			s_board
 }						t_board;
 
 t_block					*ft_get_blocks(int fd);
-void					show_usage(void);
+void					error(int i);
 
 #endif

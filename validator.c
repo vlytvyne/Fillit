@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include "libft.h"
 
 t_block		*ft_block_new(void)
 {
@@ -24,10 +25,65 @@ t_block		*ft_block_new(void)
 	return (tmp);
 }
 
-void		ft_error(void)
+size_t		ft_len_char(char *s)
 {
-	ft_putendl("Error");
-	exit(1);
+	size_t	len;
+
+	len = 0;
+	while (s[len])
+	{
+		if (s[len] != '.' && s[len] != '#')
+			return (0);
+		len++;
+	}
+	return (len);
+}
+
+void		ft_cut(char **shape)
+{
+	int		i;
+	int		start;
+	int		end;
+	char	*c;
+
+	i = 0;
+	start = 5;
+	end = 0;
+	while (i < 4)
+	{
+		if ((c = ft_strchr(shape[i], '#')))
+		{
+			start = start > c - shape[i] ? start = c - shape[i] : start;
+			c = ft_strrchr(shape[i], '#');
+			end = end < c - shape[i] ? end = c - shape[i] : end;
+			printf("start : %d end : %d\n", start, end);
+		}
+		else
+		{
+			//delete row
+		}
+		i++;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		shape[i][end + 1] = '\0';
+		ft_strcpy(shape[i], &shape[i][start]);
+		i++;
+	}
+}
+
+t_block		*ft_validate(t_block *list)
+{
+	t_block *elem;
+
+	elem = list;
+	while (elem)
+	{
+		ft_cut(elem->shape);
+		elem = elem->next;
+	}
+	return (list);
 }
 
 t_block		*ft_get_blocks(int fd)
@@ -43,23 +99,23 @@ t_block		*ft_get_blocks(int fd)
 	while (1)
 	{
 		i = 0;
-		while(i < 4)
+		while (i < 4)
 		{
 			if (get_next_line(fd, &elem->shape[i]) <= 0)
-				ft_error();
-			if (ft_strlen(elem->shape[i]) != 4)
-				ft_error();
-		i++;
+				error(2);
+			if (ft_len_char(elem->shape[i]) != 4)
+				error(3);
+			i++;
 		}
-		if ((ret = get_next_line(fd, &check)))
+		if ((ret = get_next_line(fd, &check)) > 0)
 		{
-			if (*check != '\n')
-				ft_error();
+			if (*check)
+				error(4);
 			elem->next = ft_block_new();
 			elem = elem->next;
 		}
-		if (ret == 0)
+		else
 			break ;
 	}
-	return (list);
+	return (ft_validate(list));
 }
