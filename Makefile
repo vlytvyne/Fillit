@@ -19,18 +19,18 @@ usage.c
 
 OBJS = $(SRCS:.c=.o)
 
-%.o: %.c
-	@$(CC) $(FLAGS) -o $@ -c $<
+%.o: %.c fillit.h
+	$(CC) $(FLAGS) -o $@ -c $<
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) -o $(NAME) $(OBJS) libft.a
+	$(CC) -o $(NAME) $(OBJS) libft.a
 
 clean:
-	@rm -f $(OBJS)
+	rm -f $(OBJS)
 
-flean: clean
-	@rm -f $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
