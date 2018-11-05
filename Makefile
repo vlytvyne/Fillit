@@ -34,3 +34,8 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+git: fclean
+	git add .
+	git commit
+	git push

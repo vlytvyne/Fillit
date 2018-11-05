@@ -30,6 +30,12 @@ typedef struct			s_tetromino
 	struct s_tetromino	*next;
 }						t_block;
 
+typedef struct			s_board
+{
+	char				**board;
+	int					size;
+}						t_board;
+
 t_block					*ft_get_blocks(int fd);
 void					show_usage(void);
 
