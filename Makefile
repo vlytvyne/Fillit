@@ -13,7 +13,9 @@
 NAME = fillit
 CC = gcc
 FLAGS =
-SRCS = smain.c \
+SRCS = tmain.c \
+sboard.c \
+sfillit.c \
 validator.c
 
 OBJS = $(SRCS:.c=.o)

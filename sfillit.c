@@ -1,16 +1,82 @@
 
 #include "fillit.h"
 
-int			ft_place(char **board, t_block *elem, int i, int j)
+int		is_place(char **board, char **shape, int i, int j)
 {
-	board = NULL;
-	elem = NULL;
-	i = 0;
-	j = 0;
+	int i2;
+	int j2;
+	int tmp;
+
+	i2 = 0;
+	tmp = j;
+	while (shape[i2])
+	{
+		j = tmp;
+		j2 = 0;
+		while (shape[i2][j2])
+		{
+			if (shape[i2][j2] != EMPTY && board[i][j] != EMPTY)
+				return (0);
+			j++;
+			j2++;
+		}
+		i++;
+		i2++;
+	}
 	return (1);
 }
 
-char		**ft_fillit(char **board, t_block *elem, t_block *list)
+void	put(char **board, char **shape, int i, int j)
+{
+	int i2;
+	int j2;
+	int tmp;
+
+	i2 = 0;
+	tmp = j;
+	printf("i : %d, j : %d\n", i, j);
+	while (shape[i2])
+	{
+		j = tmp;
+		j2 = 0;
+		while (shape[i2][j2])
+		{
+			if (shape[i2][j2] != EMPTY)
+				board[i][j] = shape[i2][j2];
+			j++;
+			j2++;
+		}
+		i++;
+		i2++;
+	}
+}
+
+void	clear(char **board, char **shape, int i, int j)
+{
+	int i2;
+	int j2;
+	int tmp;
+
+	i2 = 0;
+	tmp = j;
+	printf("i : %d, j : %d\n", i, j);
+	while (shape[i2])
+	{
+		j = tmp;
+		j2 = 0;
+		while (shape[i2][j2])
+		{
+			if (shape[i2][j2] == BLOCK)
+				board[i][j] = EMPTY;
+			j++;
+			j2++;
+		}
+		i++;
+		i2++;
+	}
+}
+
+char	**ft_fillit(char **board, t_block *elem, t_block *list)
 {
 	int i;
 	int j;
@@ -25,10 +91,15 @@ char		**ft_fillit(char **board, t_block *elem, t_block *list)
 		{
 			if (board[i][j] == '.') // Если не удалось поставить - пробуем другую клетку
 			{
-				if (ft_place(board, elem, i , j)) // Должна проверить/поставить блок на карту
+				if (is_place(board, elem->shape, i, j))
 				{
-					ft_print_board(board);
-					return (ft_fillit(board, elem->next, list)); // Если поставить удалось пробуем ставить следующий блок
+					printf("is_place - ok\n");
+					put(board, elem->shape, i, j);
+					return (ft_fillit(board, elem->next, list));
+				}
+				else
+				{
+					printf("is_place - ko\n");
 				}
 			}
 			j++;
