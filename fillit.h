@@ -15,6 +15,7 @@
 
 # define EMPTY '.'
 # define BLOCK '#'
+# define SUB '@'
 
 #include <stdio.h>
 # include <unistd.h>
@@ -54,5 +55,7 @@ char					**ft_update_board(char **board);
 void					ft_print_board(char **board);
 
 void					error(int i);
+
+t_block					*get_blocks(int fd);
 
 #endif

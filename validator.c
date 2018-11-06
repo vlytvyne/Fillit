@@ -13,7 +13,7 @@
 #include "fillit.h"
 #include "libft.h"
 
-t_block		*ft_block_new(void)
+t_block		*block_new(void)
 {
 	t_block *tmp;
 
@@ -25,30 +25,14 @@ t_block		*ft_block_new(void)
 	return (tmp);
 }
 
-size_t		ft_len_char(char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len])
-	{
-		if (s[len] != '.' && s[len] != '#')
-			return (0);
-		len++;
-	}
-	return (len);
-}
-
-
-t_block		*ft_get_blocks(int fd)
+t_block		*get_blocks(int fd)
 {
 	int		i;
-	int		ret;
 	char	*check;
 	t_block	*list;
 	t_block *elem;
 
-	list = ft_block_new();
+	list = block_new();
 	elem = list;
 	while (1)
 	{
@@ -57,15 +41,15 @@ t_block		*ft_get_blocks(int fd)
 		{
 			if (get_next_line(fd, &elem->shape[i]) <= 0)
 				error(2);
-			if (ft_len_char(elem->shape[i]) != 4)
+			if (ft_strlen(elem->shape[i]) != 4)
 				error(3);
 			i++;
 		}
-		if ((ret = get_next_line(fd, &check)) > 0)
+		if (get_next_line(fd, &check) > 0)
 		{
 			if (*check)
 				error(4);
-			elem->next = ft_block_new();
+			elem->next = block_new();
 			elem = elem->next;
 		}
 		else
