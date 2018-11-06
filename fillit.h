@@ -22,6 +22,8 @@
 # include <fcntl.h>
 # include "libft.h"
 
+extern int				g_size;
+
 typedef struct			s_tetromino
 {
 	char				**shape;
@@ -36,7 +38,14 @@ typedef struct			s_board
 	int					size;
 }						t_board;
 
+t_block					*ft_block_new(void);
 t_block					*ft_get_blocks(int fd);
 void					error(int i);
+
+char					**ft_fillit(t_block *elem, char **board);
+
+char					**ft_create_board(void);
+char					**ft_update_board(char **board);
+void					ft_print_board(char **board);
 
 #endif

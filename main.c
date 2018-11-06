@@ -12,6 +12,8 @@
 
 #include "fillit.h"
 
+int		g_size;
+
 void	error(int i)
 {
 	printf("Error : %d\n", i);
