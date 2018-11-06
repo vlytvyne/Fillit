@@ -12,10 +12,9 @@
 
 NAME = fillit
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+FLAGS =
 SRCS = main.c \
-validation.c \
-usage.c
+engine.c
 
 OBJS = $(SRCS:.c=.o)
 

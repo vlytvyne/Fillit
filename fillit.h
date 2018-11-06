@@ -13,8 +13,8 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# define EMPTY .
-# define BLOCK #
+# define EMPTY '.'
+# define BLOCK '#'
 
 #include <stdio.h>
 # include <unistd.h>
@@ -38,5 +38,9 @@ typedef struct			s_board
 
 t_block					*ft_get_blocks(int fd);
 void					show_usage(void);
+void					print_board(t_board b);
+t_board					get_empty_board(int size);
+t_board 				find_solution(t_board b, t_block *domino);
+t_board					make_board_copy(t_board src);
 
 #endif
