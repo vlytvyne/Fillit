@@ -40,12 +40,13 @@ typedef struct			s_board
 
 t_block					*ft_block_new(void);
 t_block					*ft_get_blocks(int fd);
-void					error(int i);
 
-char					**ft_fillit(t_block *elem, char **board);
+char					**ft_fillit(char **board, t_block *elem, t_block *list);
 
 char					**ft_create_board(void);
 char					**ft_update_board(char **board);
 void					ft_print_board(char **board);
+
+void					error(int i);
 
 #endif
