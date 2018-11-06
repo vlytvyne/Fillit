@@ -15,8 +15,8 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra
 SRCS = tmain.c \
 validator.c \
-board.c \
-fillit.c
+sboard.c \
+sfillit.c
 
 OBJS = $(SRCS:.c=.o)
 
