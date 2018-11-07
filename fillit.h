@@ -40,18 +40,11 @@ typedef struct			s_board
 	int					size;
 }						t_board;
 
-t_board					get_empty_board(int size);
-t_board 				find_solution(t_board b, t_block *domino);
-t_board					make_board_copy(t_board src);
-
 char					**fillit(char **board, t_block *elem);
 
 char					**create_board(void);
 char					**update_board(char **board);
 void					print_board(char **board);
-
-
-
 
 t_block					*block_new(void);
 void					show_usage(void);

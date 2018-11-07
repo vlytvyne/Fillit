@@ -12,7 +12,6 @@
 
 NAME = fillit
 CC = gcc
-FLAGS =
 SRCS = main.c \
 validator.c \
 utils.c \
