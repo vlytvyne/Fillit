@@ -15,7 +15,8 @@
 
 # define EMPTY '.'
 # define BLOCK '#'
-# define SUB '@'
+# define MARK '@'
+# define SHAPE(x, y) block->shape[y][x]
 
 #include <stdio.h>
 # include <unistd.h>
@@ -56,6 +57,6 @@ void					ft_print_board(char **board);
 
 void					error(int i);
 
-t_block					*get_blocks(int fd);
+t_block					*get_valid_raw_blocks(int fd);
 
 #endif
