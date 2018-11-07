@@ -72,10 +72,10 @@ char	**put(char **board, t_block *elem, int i, int j)
 		i++;
 		i2++;
 	}
-	return (ft_fillit(board, elem->next));
+	return (fillit(board, elem->next));
 }
 
-char	**ft_fillit(char **board, t_block *elem)
+char	**fillit(char **board, t_block *elem)
 {
 	int i;
 	int j;
@@ -99,6 +99,6 @@ char	**ft_fillit(char **board, t_block *elem)
 		i++;
 	}
 	if (elem->is_first == 1)
-		return (ft_fillit(ft_update_board(board), elem));
+		return (fillit(update_board(board), elem));
 	return (NULL);
 }

@@ -1,7 +1,7 @@
 
 #include "fillit.h"
 
-char        **ft_create_board(void)
+char        **create_board(void)
 {
 	char	**board;
 	int		i;
@@ -15,7 +15,7 @@ char        **ft_create_board(void)
 		board[i] = ft_strnew(g_size);
 		while (j < g_size)
 		{
-			board[i][j] = '.';
+			board[i][j] = EMPTY;
 			j++;
 		}
 		i++;
@@ -23,7 +23,7 @@ char        **ft_create_board(void)
 	return (board);
 }
 
-char		**ft_update_board(char **board)
+char		**update_board(char **board)
 {
 	int		i;
 
@@ -35,10 +35,10 @@ char		**ft_update_board(char **board)
 	}
 	free(board);
 	g_size += 1;
-	return (ft_create_board());
+	return (create_board());
 }
 
-void		ft_print_board(char **board)
+void		print_board(char **board)
 {
 	int		i;
 
