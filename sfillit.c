@@ -1,38 +1,22 @@
 
 #include "fillit.h"
 
-int		is_place(char **board, char **shape, int i, int j)
+int		is_place(char **board, t_block *elem, int i, int j)
 {
 	int i2;
 	int j2;
 	int tmp;
-	static int count;
 
 	i2 = 0;
 	tmp = j;
-	count++;
-	if (shape[0][0] == EMPTY)
-	{
-		//printf("i : %d, j : %d\n", i, j);
-		//ft_print_board(board);
-		tmp -= 1;
-		// for (int k = 0; k < 2; k++)
-			// ft_putendl(shape[k]);
-	}
-	while (shape[i2])
+	while (i2 < elem->height)
 	{
 		j = tmp;
 		j2 = 0;
-		while (shape[i2][j2])
+		while (elem->shape[i2][j2])
 		{
-			if (shape[i2][j2] != EMPTY && board[i][j] != EMPTY)
-			{
-				if (count == 14)
-				{
-					printf("TYT = i : %d, j : %d\n\n", i, j);
-				}
+			if (elem->shape[i2][j2] != EMPTY && board[i][j] != EMPTY)
 				return (0);
-			}
 			j++;
 			j2++;
 		}
@@ -42,7 +26,7 @@ int		is_place(char **board, char **shape, int i, int j)
 	return (1);
 }
 
-void	clear(char **board, char **shape, int i, int j)
+void	clear(char **board, t_block *elem, int i, int j)
 {
 	int i2;
 	int j2;
@@ -50,15 +34,13 @@ void	clear(char **board, char **shape, int i, int j)
 
 	i2 = 0;
 	tmp = j;
-	if (shape[0][0] == EMPTY)
-			tmp -= 1;
-	while (shape[i2])
+	while (i2 < elem->height)
 	{
 		j = tmp;
 		j2 = 0;
-		while (shape[i2][j2])
+		while (elem->shape[i2][j2])
 		{
-			if (shape[i2][j2] != EMPTY)
+			if (elem->shape[i2][j2] != EMPTY)
 				board[i][j] = EMPTY;
 			j++;
 			j2++;
@@ -68,7 +50,7 @@ void	clear(char **board, char **shape, int i, int j)
 	}
 }
 
-char	**put(char **board, t_block *elem, int i, int j, t_block *list)
+char	**put(char **board, t_block *elem, int i, int j)
 {
 	int i2;
 	int j2;
@@ -76,9 +58,7 @@ char	**put(char **board, t_block *elem, int i, int j, t_block *list)
 
 	i2 = 0;
 	tmp = j;
-	if (elem->shape[0][0] == EMPTY)
-			tmp -= 1;
-	while (elem->shape[i2])
+	while (i2 < elem->height)
 	{
 		j = tmp;
 		j2 = 0;
@@ -92,10 +72,10 @@ char	**put(char **board, t_block *elem, int i, int j, t_block *list)
 		i++;
 		i2++;
 	}
-	return (ft_fillit(board, elem->next, list));
+	return (ft_fillit(board, elem->next));
 }
 
-char	**ft_fillit(char **board, t_block *elem, t_block *list)
+char	**ft_fillit(char **board, t_block *elem)
 {
 	int i;
 	int j;
@@ -106,20 +86,19 @@ char	**ft_fillit(char **board, t_block *elem, t_block *list)
 	while (i <= g_size - elem->height)
 	{
 		j = 0;
-		while (j <= g_size - elem->width)
+		while (j <= g_size - elem->width + 1)
 		{
-			if (board[i][j] == '.' && is_place(board, elem->shape, i, j))
+			if (is_place(board, elem, i, j))
 			{
-					if (put(board, elem, i, j, list) == NULL)
-						clear(board, elem->shape, i, j);
-					else
-						return (board);
+				if (put(board, elem, i, j))
+					return (board);
+				clear(board, elem, i, j);
 			}
 			j++;
 		}
 		i++;
 	}
-	if (elem == list)
-		return (ft_fillit(ft_update_board(board), elem, list));
+	if (elem->is_first == 1)
+		return (ft_fillit(ft_update_board(board), elem));
 	return (NULL);
 }
