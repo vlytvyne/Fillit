@@ -13,6 +13,7 @@
 NAME = fillit
 CC = gcc
 FLAGS =
+<<<<<<< HEAD
 SRCS = vmain.c \
 validator.c
 
