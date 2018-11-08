@@ -45,7 +45,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(OBJS)
+	$(CC) -o $(NAME) $(OBJS) $(FLAGS)
 
 clean:
 	rm -f $(OBJS)
@@ -54,8 +54,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-git: fclean
-	git add .
-	git commit
-	git push
