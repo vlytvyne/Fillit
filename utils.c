@@ -16,8 +16,8 @@ t_block	*block_new(void)
 {
 	t_block *tmp;
 
-	tmp = (t_block *)malloc(sizeof(t_block));
-	tmp->shape = (char **)malloc(sizeof(char *) * 4);
+	MALCH((tmp = (t_block *)malloc(sizeof(t_block))));
+	MALCH((tmp->shape = (char **)malloc(sizeof(char *) * 4)));
 	tmp->width = 0;
 	tmp->height = 0;
 	tmp->next = NULL;

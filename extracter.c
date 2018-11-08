@@ -46,10 +46,10 @@ static char	**create_tet(t_block *block)
 	int		i;
 
 	i = 0;
-	domino = (char**)malloc(sizeof(char*) * block->height);
+	MALCH((domino = (char**)malloc(sizeof(char*) * block->height)));
 	while (i < block->height)
 	{
-		domino[i] = (char*)malloc(sizeof(char) * (block->width + 1));
+		MALCH((domino[i] = (char*)malloc(sizeof(char) * (block->width + 1))));
 		domino[i][block->width] = '\0';
 		i++;
 	}
