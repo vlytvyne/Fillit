@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-int		is_place(char **board, t_block *elem, int i, int j)
+static int		is_place(char **board, t_block *elem, int i, int j)
 {
 	int i2;
 	int j2;
@@ -37,7 +37,7 @@ int		is_place(char **board, t_block *elem, int i, int j)
 	return (1);
 }
 
-void	clear(char **board, t_block *elem, int i, int j)
+static void		clear(char **board, t_block *elem, int i, int j)
 {
 	int i2;
 	int j2;
@@ -61,7 +61,7 @@ void	clear(char **board, t_block *elem, int i, int j)
 	}
 }
 
-int		put(t_board *b, t_block *elem, int i, int j)
+static int		put(t_board *b, t_block *elem, int i, int j)
 {
 	int i2;
 	int j2;
@@ -86,7 +86,7 @@ int		put(t_board *b, t_block *elem, int i, int j)
 	return (fillit(b, elem->next));
 }
 
-int		fillit(t_board *b, t_block *elem)
+int				fillit(t_board *b, t_block *elem)
 {
 	int i;
 	int j;
