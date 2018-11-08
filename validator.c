@@ -115,7 +115,7 @@ t_block			*get_valid_raw_blocks(int fd, int *num_tetriminos)
 	{
 		(*num_tetriminos)++;
 		read_into_block(fd, elem);
-		if (get_next_line(fd, &check) > 0)
+		if (get_next_line(fd, &check) > 0 || *check)
 		{
 			if (*check)
 				error();
