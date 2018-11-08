@@ -17,6 +17,7 @@
 # define BLOCK '#'
 # define MARK '@'
 # define SHAPE(x, y) block->shape[y][x]
+# define MALCH(x) if (!x) exit (1)
 
 # include <unistd.h>
 # include <stdlib.h>

@@ -17,12 +17,12 @@ void		create_board(t_board *b)
 	int		i;
 	int		j;
 
-	b->board = (char **)malloc(sizeof(char *) * b->size);
+	MALCH((b->board = (char **)malloc(sizeof(char *) * b->size)));
 	i = 0;
 	while (i < b->size)
 	{
 		j = 0;
-		b->board[i] = ft_strnew(b->size);
+		MALCH((b->board[i] = ft_strnew(b->size)));
 		while (j < b->size)
 		{
 			b->board[i][j] = EMPTY;
