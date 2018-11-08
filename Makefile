@@ -12,6 +12,7 @@
 
 NAME = fillit
 CC = gcc
+FLAGS = -Wall -Werror -Wextra
 SRCS = main.c \
 validator.c \
 utils.c \
@@ -19,7 +20,22 @@ marker.c \
 extracter.c \
 ruler.c \
 sfillit.c \
-sboard.c
+sboard.c \
+ft_strnew.c \
+ft_strlen.c \
+ft_putstr.c \
+ft_putendl.c \
+ft_putchar.c \
+get_next_line.c \
+ft_putchar_fd.c \
+ft_strdup.c \
+ft_strjoin.c \
+ft_strrchr.c \
+ft_strsub.c \
+ft_strcat.c \
+ft_strcpy.c \
+ft_strdel.c \
+ft_strncpy.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -29,7 +45,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) libft.a
+	$(CC) -o $(NAME) $(OBJS)
 
 clean:
 	rm -f $(OBJS)

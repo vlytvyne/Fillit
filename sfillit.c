@@ -61,7 +61,7 @@ void	clear(char **board, t_block *elem, int i, int j)
 	}
 }
 
-char	**put(char **board, t_block *elem, int i, int j)
+int		put(t_board *b, t_block *elem, int i, int j)
 {
 	int i2;
 	int j2;
@@ -76,40 +76,40 @@ char	**put(char **board, t_block *elem, int i, int j)
 		while (elem->shape[i2][j2])
 		{
 			if (elem->shape[i2][j2] != EMPTY)
-				board[i][j] = elem->shape[i2][j2];
+				b->board[i][j] = elem->shape[i2][j2];
 			j++;
 			j2++;
 		}
 		i++;
 		i2++;
 	}
-	return (fillit(board, elem->next));
+	return (fillit(b, elem->next));
 }
 
-char	**fillit(char **board, t_block *elem)
+int		fillit(t_board *b, t_block *elem)
 {
 	int i;
 	int j;
 
 	i = 0;
 	if (elem == NULL)
-		return (board);
-	while (i <= g_size - elem->height)
+		return (1);
+	while (i <= b->size - elem->height)
 	{
 		j = 0;
-		while (j <= g_size - elem->width + 1)
+		while (j <= b->size - elem->width + 1)
 		{
-			if (is_place(board, elem, i, j))
+			if (is_place(b->board, elem, i, j))
 			{
-				if (put(board, elem, i, j))
-					return (board);
-				clear(board, elem, i, j);
+				if (put(b, elem, i, j))
+					return (1);
+				clear(b->board, elem, i, j);
 			}
 			j++;
 		}
 		i++;
 	}
 	if (elem->is_first == 1)
-		return (fillit(update_board(board), elem));
-	return (NULL);
+		return (fillit(update_board(b), elem));
+	return (0);
 }

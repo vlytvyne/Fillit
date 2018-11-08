@@ -12,51 +12,50 @@
 
 #include "fillit.h"
 
-char		**create_board(void)
+void		create_board(t_board *b)
 {
-	char	**board;
 	int		i;
 	int		j;
 
-	board = (char **)malloc(sizeof(char *) * g_size);
+	b->board = (char **)malloc(sizeof(char *) * b->size);
 	i = 0;
-	while (i < g_size)
+	while (i < b->size)
 	{
 		j = 0;
-		board[i] = ft_strnew(g_size);
-		while (j < g_size)
+		b->board[i] = ft_strnew(b->size);
+		while (j < b->size)
 		{
-			board[i][j] = EMPTY;
+			b->board[i][j] = EMPTY;
 			j++;
 		}
 		i++;
 	}
-	return (board);
 }
 
-char		**update_board(char **board)
+t_board		*update_board(t_board *b)
 {
 	int		i;
 
 	i = 0;
-	while (i < g_size)
+	while (i < b->size)
 	{
-		free(board[i]);
+		free(b->board[i]);
 		i++;
 	}
-	free(board);
-	g_size += 1;
-	return (create_board());
+	free(b->board);
+	b->size += 1;
+	create_board(b);
+	return (b);
 }
 
-void		print_board(char **board)
+void		print_board(t_board *b)
 {
 	int		i;
 
 	i = 0;
-	while (i < g_size)
+	while (i < b->size)
 	{
-		ft_putendl(board[i]);
+		ft_putendl(b->board[i]);
 		i++;
 	}
 }
