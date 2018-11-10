@@ -6,7 +6,7 @@
 /*   By: vlytvyne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 15:03:04 by vlytvyne          #+#    #+#             */
-/*   Updated: 2018/11/05 15:03:11 by vlytvyne         ###   ########.fr       */
+/*   Updated: 2018/11/10 16:29:12 by vlytvyne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		main(int ac, char **av)
 		error();
 	get_ready(list);
 	list->is_first = 1;
-	b.size = fil_sqrt(num_terminos);
+	b.size = fil_sqrt(num_terminos * 4);
 	create_board(&b);
 	fillit(&b, list);
 	print_board(&b);
